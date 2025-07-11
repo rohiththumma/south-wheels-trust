@@ -12,7 +12,7 @@ export const RecentCarsSection = () => {
       kmDriven: "45,000 km",
       year: "2019",
       location: "Hyderabad",
-      image: "https://imgd.aeplcdn.com/370x208/n/cw/ec/130591/swift-exterior-right-front-three-quarter-109.jpeg?isig=0&q=80"
+      image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=370&h=208&fit=crop&crop=center"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ export const RecentCarsSection = () => {
       kmDriven: "32,000 km",
       year: "2020",
       location: "Bangalore",
-      image: "https://imgd.aeplcdn.com/370x208/n/cw/ec/106815/i20-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80"
+      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=370&h=208&fit=crop&crop=center"
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ export const RecentCarsSection = () => {
       kmDriven: "28,000 km",
       year: "2021",
       location: "Vijayawada",
-      image: "https://imgd.aeplcdn.com/370x208/n/cw/ec/134287/city-exterior-right-front-three-quarter-76.jpeg?isig=0&q=80"
+      image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=370&h=208&fit=crop&crop=center"
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ export const RecentCarsSection = () => {
       kmDriven: "55,000 km",
       year: "2019",
       location: "Visakhapatnam",
-      image: "https://imgd.aeplcdn.com/370x208/n/cw/ec/115025/innova-crysta-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80"
+      image: "https://images.unsplash.com/photo-1619976215249-4e700b9c8e7e?w=370&h=208&fit=crop&crop=center"
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ export const RecentCarsSection = () => {
       kmDriven: "18,000 km",
       year: "2022",
       location: "Mysore",
-      image: "https://imgd.aeplcdn.com/370x208/n/cw/ec/139665/nexon-exterior-right-front-three-quarter-33.jpeg?isig=0&q=80"
+      image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=370&h=208&fit=crop&crop=center"
     },
     {
       id: 6,
@@ -57,7 +57,7 @@ export const RecentCarsSection = () => {
       kmDriven: "25,000 km",
       year: "2021",
       location: "Warangal",
-      image: "https://imgd.aeplcdn.com/370x208/n/cw/ec/53695/xuv300-exterior-right-front-three-quarter-74.jpeg?isig=0&q=80"
+      image: "https://images.unsplash.com/photo-1606016159991-c6414b1de5e3?w=370&h=208&fit=crop&crop=center"
     }
   ];
 

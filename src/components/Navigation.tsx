@@ -32,13 +32,6 @@ export const Navigation = () => {
     }
   };
 
-  const handleAboutUsClick = () => {
-    const whyChooseUsSection = document.getElementById('why-choose-us-section');
-    if (whyChooseUsSection) {
-      whyChooseUsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleLoginClick = () => {
     // Placeholder for login functionality
     alert('Login functionality will be implemented soon!');
@@ -91,16 +84,6 @@ export const Navigation = () => {
                   >
                     <Search className="mr-2 h-4 w-4" />
                     How It Works
-                  </Button>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <Button 
-                    variant="ghost" 
-                    className="text-slate-700 hover:text-red-600"
-                    onClick={handleAboutUsClick}
-                  >
-                    About Us
                   </Button>
                 </NavigationMenuItem>
               </NavigationMenuList>
