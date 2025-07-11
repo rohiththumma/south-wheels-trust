@@ -18,7 +18,7 @@ export const TestimonialsSection = () => {
       location: "Bangalore",
       rating: 5,
       text: "Very transparent pricing and genuine cars. The team was professional and the delivery was on time. Highly recommended!",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b332aa87?w=80&h=80&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
     },
     {
       id: 3,

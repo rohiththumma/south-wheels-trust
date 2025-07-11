@@ -12,7 +12,7 @@ export const RecentCarsSection = () => {
       kmDriven: "45,000 km",
       year: "2019",
       location: "Hyderabad",
-      image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=250&fit=crop"
+      image: "https://images.unsplash.com/photo-1609256678552-18516e0e8f34?w=400&h=250&fit=crop"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ export const RecentCarsSection = () => {
       kmDriven: "32,000 km",
       year: "2020",
       location: "Bangalore",
-      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=250&fit=crop"
+      image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=250&fit=crop"
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ export const RecentCarsSection = () => {
       kmDriven: "28,000 km",
       year: "2021",
       location: "Vijayawada",
-      image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=250&fit=crop"
+      image: "https://images.unsplash.com/photo-1567810119631-e6585854fb99?w=400&h=250&fit=crop"
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ export const RecentCarsSection = () => {
       kmDriven: "55,000 km",
       year: "2019",
       location: "Visakhapatnam",
-      image: "https://images.unsplash.com/photo-1494905998402-395d579af36f?w=400&h=250&fit=crop"
+      image: "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=400&h=250&fit=crop"
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ export const RecentCarsSection = () => {
       kmDriven: "18,000 km",
       year: "2022",
       location: "Mysore",
-      image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=250&fit=crop"
+      image: "https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?w=400&h=250&fit=crop"
     },
     {
       id: 6,
@@ -57,7 +57,7 @@ export const RecentCarsSection = () => {
       kmDriven: "25,000 km",
       year: "2021",
       location: "Warangal",
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=250&fit=crop"
+      image: "https://images.unsplash.com/photo-1607603750916-d4d05d4d2b9a?w=400&h=250&fit=crop"
     }
   ];
 

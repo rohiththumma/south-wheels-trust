@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, LogIn } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 
 export const HeroSection = () => {
   return (
@@ -30,9 +30,9 @@ export const HeroSection = () => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-3 text-lg">
-              <LogIn className="mr-2 h-5 w-5" />
-              Login / Register
+            <Button size="lg" className="bg-green-600 text-white px-8 py-3 text-lg">
+              <MessageCircle className="mr-2 h-5 w-5" />
+              WhatsApp Chat
             </Button>
           </div>
         </div>

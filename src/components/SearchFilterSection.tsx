@@ -3,8 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search } from "lucide-react";
+import { useState } from "react";
 
 export const SearchFilterSection = () => {
+  const [selectedBrand, setSelectedBrand] = useState("");
+
+  const carModels = {
+    maruti: ["Swift", "Baleno", "Alto", "Wagon R", "Dzire", "Vitara Brezza", "Ertiga"],
+    hyundai: ["i20", "Creta", "Verna", "Grand i10", "Santro", "Venue", "Tucson"],
+    honda: ["City", "Amaze", "Jazz", "WR-V", "CR-V", "Civic"],
+    toyota: ["Innova Crysta", "Fortuner", "Corolla", "Camry", "Glanza", "Urban Cruiser"],
+    tata: ["Nexon", "Harrier", "Safari", "Altroz", "Tigor", "Tiago", "Punch"],
+    mahindra: ["XUV300", "XUV500", "XUV700", "Scorpio", "Bolero", "Thar", "KUV100"]
+  };
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -15,7 +27,7 @@ export const SearchFilterSection = () => {
           
           <Card className="shadow-lg">
             <CardContent className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
                 <div>
                   <label className="block text-sm font-medium mb-2 text-slate-700">Location</label>
                   <Select>
@@ -35,7 +47,7 @@ export const SearchFilterSection = () => {
                 
                 <div>
                   <label className="block text-sm font-medium mb-2 text-slate-700">Car Brand</label>
-                  <Select>
+                  <Select onValueChange={setSelectedBrand}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select Brand" />
                     </SelectTrigger>
@@ -46,6 +58,22 @@ export const SearchFilterSection = () => {
                       <SelectItem value="toyota">Toyota</SelectItem>
                       <SelectItem value="tata">Tata</SelectItem>
                       <SelectItem value="mahindra">Mahindra</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-slate-700">Car Model</label>
+                  <Select disabled={!selectedBrand}>
+                    <SelectTrigger>
+                      <SelectValue placeholder={selectedBrand ? "Select Model" : "Select Brand First"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {selectedBrand && carModels[selectedBrand as keyof typeof carModels]?.map((model) => (
+                        <SelectItem key={model} value={model.toLowerCase()}>
+                          {model}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
