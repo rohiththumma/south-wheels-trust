@@ -1,8 +1,15 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const HeroSection = () => {
+  const handleBrowseCarsClick = () => {
+    const carsSection = document.getElementById('recent-cars-section');
+    if (carsSection) {
+      carsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-slate-800 to-slate-900 text-white overflow-hidden">
       {/* Background Pattern */}
@@ -25,14 +32,13 @@ export const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg"
+              onClick={handleBrowseCarsClick}
+            >
               Browse Cars
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            
-            <Button size="lg" className="bg-green-600 text-white px-8 py-3 text-lg">
-              <MessageCircle className="mr-2 h-5 w-5" />
-              WhatsApp Chat
             </Button>
           </div>
         </div>
