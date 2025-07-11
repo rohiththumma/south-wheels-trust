@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -19,14 +19,6 @@ export const Footer = () => {
             </p>
             
             <div className="flex space-x-4">
-              <Button 
-                size="sm" 
-                className="bg-green-600 hover:bg-green-700"
-              >
-                <MessageCircle className="mr-2 h-4 w-4" />
-                WhatsApp
-              </Button>
-              
               <Button 
                 size="sm" 
                 variant="outline" 
