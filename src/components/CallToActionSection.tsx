@@ -25,21 +25,6 @@ export const CallToActionSection = () => {
               Call Now: +91 9876543210
             </Button>
           </div>
-          
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold mb-2">500+</div>
-              <div className="opacity-90">Cars Sold</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">3</div>
-              <div className="opacity-90">States Covered</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">100%</div>
-              <div className="opacity-90">NOC Assistance</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

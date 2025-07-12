@@ -1,5 +1,4 @@
 
-import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export const Footer = () => {
@@ -17,17 +16,6 @@ export const Footer = () => {
               We specialize in providing quality used vehicles with complete NOC support 
               and transparent pricing in Telangana, Andhra Pradesh, and Karnataka.
             </p>
-            
-            <div className="flex space-x-4">
-              <Button 
-                size="sm" 
-                variant="outline" 
-                className="border-gray-600 text-gray-300 hover:bg-gray-800"
-              >
-                <Phone className="mr-2 h-4 w-4" />
-                Call Us
-              </Button>
-            </div>
           </div>
           
           {/* Quick Links */}
@@ -36,7 +24,6 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-300">
               <li><a href="#" className="hover:text-red-400 transition-colors">Browse Cars</a></li>
               <li><a href="#" className="hover:text-red-400 transition-colors">How It Works</a></li>
-              <li><a href="#" className="hover:text-red-400 transition-colors">About Us</a></li>
               <li><a href="#" className="hover:text-red-400 transition-colors">Admin Login</a></li>
               <li><a href="#" className="hover:text-red-400 transition-colors">Terms & Conditions</a></li>
               <li><a href="#" className="hover:text-red-400 transition-colors">Privacy Policy</a></li>

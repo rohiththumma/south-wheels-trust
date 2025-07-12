@@ -1,6 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Eye } from "lucide-react";
+
 export const RecentCarsSection = () => {
   const cars = [{
     id: 1,
@@ -9,7 +11,7 @@ export const RecentCarsSection = () => {
     kmDriven: "45,000 km",
     year: "2019",
     location: "Hyderabad",
-    image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=250&fit=crop"
+    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/130591/swift-exterior-right-front-three-quarter-109.jpeg?isig=0&q=80"
   }, {
     id: 2,
     name: "Hyundai i20 Sportz",
@@ -17,7 +19,7 @@ export const RecentCarsSection = () => {
     kmDriven: "32,000 km",
     year: "2020",
     location: "Bangalore",
-    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=250&fit=crop"
+    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/i20-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80"
   }, {
     id: 3,
     name: "Honda City ZX",
@@ -25,7 +27,7 @@ export const RecentCarsSection = () => {
     kmDriven: "28,000 km",
     year: "2021",
     location: "Vijayawada",
-    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=250&fit=crop"
+    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/134287/city-exterior-right-front-three-quarter-76.jpeg?isig=0&q=80"
   }, {
     id: 4,
     name: "Toyota Innova Crysta",
@@ -33,7 +35,7 @@ export const RecentCarsSection = () => {
     kmDriven: "55,000 km",
     year: "2019",
     location: "Visakhapatnam",
-    image: "https://images.unsplash.com/photo-1551316679-9c6ae9dec224?w=400&h=250&fit=crop"
+    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/innova-crysta-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80"
   }, {
     id: 5,
     name: "Tata Nexon XZ+",
@@ -41,7 +43,7 @@ export const RecentCarsSection = () => {
     kmDriven: "18,000 km",
     year: "2022",
     location: "Mysore",
-    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=400&h=250&fit=crop"
+    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-71.jpeg?isig=0&q=80"
   }, {
     id: 6,
     name: "Mahindra XUV300",
@@ -49,15 +51,19 @@ export const RecentCarsSection = () => {
     kmDriven: "25,000 km",
     year: "2021",
     location: "Warangal",
-    image: "https://images.unsplash.com/photo-1606016159991-c6414b1de5e3?w=400&h=250&fit=crop"
+    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/40087/xuv300-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80"
   }];
+
   const handleQuickView = (carName: string) => {
     alert(`Quick view for ${carName} - Feature coming soon!`);
   };
+
   const handleViewAllCars = () => {
     alert('View all cars feature coming soon!');
   };
-  return <section id="recent-cars-section" className="py-16 bg-gray-50">
+
+  return (
+    <section id="recent-cars-section" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-4 text-slate-800">
@@ -68,9 +74,14 @@ export const RecentCarsSection = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cars.map(car => <Card key={car.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            {cars.map(car => (
+              <Card key={car.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div className="relative">
-                  <img src={car.image} alt={car.name} className="w-full h-48 object-fill" />
+                  <img 
+                    src={car.image} 
+                    alt={car.name} 
+                    className="w-full h-48 object-cover" 
+                  />
                   <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-sm font-medium">
                     {car.year}
                   </div>
@@ -95,21 +106,32 @@ export const RecentCarsSection = () => {
                       📍 {car.location}
                     </span>
                     
-                    <Button size="sm" className="bg-red-600 hover:bg-red-700" onClick={() => handleQuickView(car.name)}>
+                    <Button 
+                      size="sm" 
+                      className="bg-red-600 hover:bg-red-700" 
+                      onClick={() => handleQuickView(car.name)}
+                    >
                       <Eye className="mr-1 h-4 w-4" />
                       Quick View
                     </Button>
                   </div>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
           
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white" onClick={handleViewAllCars}>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white" 
+              onClick={handleViewAllCars}
+            >
               View All Cars
             </Button>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
