@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Eye } from "lucide-react";
@@ -11,7 +10,7 @@ export const RecentCarsSection = () => {
     kmDriven: "45,000 km",
     year: "2019",
     location: "Hyderabad",
-    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/130591/swift-exterior-right-front-three-quarter-109.jpeg?isig=0&q=80"
+    image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=664&h=374&fit=crop&crop=center"
   }, {
     id: 2,
     name: "Hyundai i20 Sportz",
@@ -19,7 +18,7 @@ export const RecentCarsSection = () => {
     kmDriven: "32,000 km",
     year: "2020",
     location: "Bangalore",
-    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/i20-exterior-right-front-three-quarter-4.jpeg?isig=0&q=80"
+    image: "https://images.unsplash.com/photo-1616422285623-13ff0162193c?w=664&h=374&fit=crop&crop=center"
   }, {
     id: 3,
     name: "Honda City ZX",
@@ -27,7 +26,7 @@ export const RecentCarsSection = () => {
     kmDriven: "28,000 km",
     year: "2021",
     location: "Vijayawada",
-    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/134287/city-exterior-right-front-three-quarter-76.jpeg?isig=0&q=80"
+    image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=664&h=374&fit=crop&crop=center"
   }, {
     id: 4,
     name: "Toyota Innova Crysta",
@@ -35,7 +34,7 @@ export const RecentCarsSection = () => {
     kmDriven: "55,000 km",
     year: "2019",
     location: "Visakhapatnam",
-    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/115025/innova-crysta-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80"
+    image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=664&h=374&fit=crop&crop=center"
   }, {
     id: 5,
     name: "Tata Nexon XZ+",
@@ -43,7 +42,7 @@ export const RecentCarsSection = () => {
     kmDriven: "18,000 km",
     year: "2022",
     location: "Mysore",
-    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-71.jpeg?isig=0&q=80"
+    image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=664&h=374&fit=crop&crop=center"
   }, {
     id: 6,
     name: "Mahindra XUV300",
@@ -51,7 +50,7 @@ export const RecentCarsSection = () => {
     kmDriven: "25,000 km",
     year: "2021",
     location: "Warangal",
-    image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/40087/xuv300-exterior-right-front-three-quarter-11.jpeg?isig=0&q=80"
+    image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=664&h=374&fit=crop&crop=center"
   }];
 
   const handleQuickView = (carName: string) => {
