@@ -4,23 +4,54 @@ import { Eye, EyeOff, Mail, Lock, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useAuth } from '@/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 export const AdminAuth = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle admin login
-    console.log('Admin login submitted:', formData);
-    alert('Admin login functionality will be implemented with Supabase!');
+    setLoading(true);
+
+    try {
+      const { error } = await signIn(formData.email, formData.password);
+      if (error) {
+        toast({
+          title: "Login Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Welcome Admin!",
+          description: "You have been successfully logged in.",
+        });
+        navigate('/admin');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -77,9 +108,10 @@ export const AdminAuth = () => {
 
         <Button
           type="submit"
+          disabled={loading}
           className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-lg transition-colors duration-200"
         >
-          Login as Admin
+          {loading ? 'Please wait...' : 'Login as Admin'}
         </Button>
 
         <div className="text-center">

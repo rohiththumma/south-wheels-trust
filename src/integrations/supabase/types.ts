@@ -14,6 +14,101 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          amount_paid: number
+          booking_date: string
+          car_id: string
+          created_at: string
+          customer_id: string
+          id: string
+          noc_status: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount_paid: number
+          booking_date?: string
+          car_id: string
+          created_at?: string
+          customer_id: string
+          id?: string
+          noc_status?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_paid?: number
+          booking_date?: string
+          car_id?: string
+          created_at?: string
+          customer_id?: string
+          id?: string
+          noc_status?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_car_id_fkey"
+            columns: ["car_id"]
+            isOneToOne: false
+            referencedRelation: "cars"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cars: {
+        Row: {
+          advance_amount: number
+          brand: string
+          condition_notes: string | null
+          created_at: string
+          fuel_type: string
+          id: string
+          images: Json | null
+          km_driven: number
+          location: string
+          model_year: number
+          name: string
+          price: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          advance_amount?: number
+          brand: string
+          condition_notes?: string | null
+          created_at?: string
+          fuel_type: string
+          id?: string
+          images?: Json | null
+          km_driven: number
+          location: string
+          model_year: number
+          name: string
+          price: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          advance_amount?: number
+          brand?: string
+          condition_notes?: string | null
+          created_at?: string
+          fuel_type?: string
+          id?: string
+          images?: Json | null
+          km_driven?: number
+          location?: string
+          model_year?: number
+          name?: string
+          price?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       document_chunks: {
         Row: {
           chunk_index: number
@@ -45,6 +140,50 @@ export type Database = {
             columns: ["file_id"]
             isOneToOne: false
             referencedRelation: "files"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      enquiries: {
+        Row: {
+          admin_reply: string | null
+          car_id: string | null
+          created_at: string
+          customer_id: string
+          id: string
+          message: string
+          status: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          admin_reply?: string | null
+          car_id?: string | null
+          created_at?: string
+          customer_id: string
+          id?: string
+          message: string
+          status?: string
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          admin_reply?: string | null
+          car_id?: string | null
+          created_at?: string
+          customer_id?: string
+          id?: string
+          message?: string
+          status?: string
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enquiries_car_id_fkey"
+            columns: ["car_id"]
+            isOneToOne: false
+            referencedRelation: "cars"
             referencedColumns: ["id"]
           },
         ]
@@ -124,6 +263,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string | null
+          id: string
+          mobile: string | null
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string | null
+          id: string
+          mobile?: string | null
+          role?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          mobile?: string | null
+          role?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       sessions: {
         Row: {

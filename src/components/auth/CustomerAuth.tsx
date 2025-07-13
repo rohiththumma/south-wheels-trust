@@ -5,11 +5,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useAuth } from '@/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 export const CustomerAuth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     mobile: '',
@@ -19,15 +23,68 @@ export const CustomerAuth = () => {
     agreeTerms: false
   });
 
+  const { signUp, signIn } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Customer form submitted:', formData);
-    alert(`Customer ${isLogin ? 'Login' : 'Registration'} functionality will be implemented with Supabase!`);
+    setLoading(true);
+
+    try {
+      if (isLogin) {
+        const { error } = await signIn(formData.email, formData.password);
+        if (error) {
+          toast({
+            title: "Login Failed",
+            description: error.message,
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Welcome back!",
+            description: "You have been successfully logged in.",
+          });
+          navigate('/dashboard');
+        }
+      } else {
+        if (formData.password !== formData.confirmPassword) {
+          toast({
+            title: "Password Mismatch",
+            description: "Passwords do not match.",
+            variant: "destructive",
+          });
+          return;
+        }
+
+        const { error } = await signUp(formData.email, formData.password, formData.fullName, formData.mobile);
+        if (error) {
+          toast({
+            title: "Registration Failed",
+            description: error.message,
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Registration Successful!",
+            description: "Please check your email to verify your account.",
+          });
+          navigate('/dashboard');
+        }
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -163,9 +220,10 @@ export const CustomerAuth = () => {
 
         <Button
           type="submit"
+          disabled={loading}
           className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-lg transition-colors duration-200"
         >
-          {isLogin ? 'Login as Customer' : 'Register as Customer'}
+          {loading ? 'Please wait...' : (isLogin ? 'Login as Customer' : 'Register as Customer')}
         </Button>
 
         {isLogin && (
