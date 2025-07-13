@@ -51,7 +51,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         return;
       }
 
-      setProfile(data);
+      if (data) {
+        // Properly cast the role to the expected type
+        const profileData: Profile = {
+          ...data,
+          role: data.role as 'customer' | 'admin'
+        };
+        setProfile(profileData);
+      }
     } catch (error) {
       console.error('Error fetching profile:', error);
     }
