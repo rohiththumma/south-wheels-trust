@@ -46,9 +46,7 @@ interface Booking {
   cars: {
     name: string;
   };
-  profiles: {
-    full_name: string;
-  };
+  customer_name: string;
 }
 
 interface Enquiry {
@@ -58,9 +56,7 @@ interface Enquiry {
   admin_reply: string | null;
   status: string;
   created_at: string;
-  profiles: {
-    full_name: string;
-  };
+  customer_name: string;
 }
 
 export const AdminDashboard = () => {
@@ -83,24 +79,52 @@ export const AdminDashboard = () => {
         .select('*')
         .order('created_at', { ascending: false });
 
-      // Fetch bookings with customer and car details
+      // Fetch bookings with car details and customer names separately
       const { data: bookingsData } = await supabase
         .from('bookings')
         .select(`
           *,
-          cars (name),
-          profiles (full_name)
+          cars (name)
         `)
         .order('booking_date', { ascending: false });
 
-      // Fetch enquiries with customer details
+      // Fetch customer names for bookings
+      const bookingsWithCustomers = await Promise.all(
+        (bookingsData || []).map(async (booking) => {
+          const { data: profileData } = await supabase
+            .from('profiles')
+            .select('full_name')
+            .eq('id', booking.customer_id)
+            .single();
+          
+          return {
+            ...booking,
+            customer_name: profileData?.full_name || 'Unknown Customer'
+          };
+        })
+      );
+
+      // Fetch enquiries with customer details separately
       const { data: enquiriesData } = await supabase
         .from('enquiries')
-        .select(`
-          *,
-          profiles (full_name)
-        `)
+        .select('*')
         .order('created_at', { ascending: false });
+
+      // Fetch customer names for enquiries
+      const enquiriesWithCustomers = await Promise.all(
+        (enquiriesData || []).map(async (enquiry) => {
+          const { data: profileData } = await supabase
+            .from('profiles')
+            .select('full_name')
+            .eq('id', enquiry.customer_id)
+            .single();
+          
+          return {
+            ...enquiry,
+            customer_name: profileData?.full_name || 'Unknown Customer'
+          };
+        })
+      );
 
       // Fetch customer count
       const { data: profilesData } = await supabase
@@ -109,12 +133,12 @@ export const AdminDashboard = () => {
         .eq('role', 'customer');
 
       setCars(carsData || []);
-      setBookings(bookingsData || []);
-      setEnquiries(enquiriesData || []);
+      setBookings(bookingsWithCustomers);
+      setEnquiries(enquiriesWithCustomers);
 
       // Calculate stats
-      const totalPayments = (bookingsData || []).reduce((sum, booking) => sum + Number(booking.amount_paid), 0);
-      const newEnquiries = (enquiriesData || []).filter(e => e.status === 'pending').length;
+      const totalPayments = bookingsWithCustomers.reduce((sum, booking) => sum + Number(booking.amount_paid), 0);
+      const newEnquiries = enquiriesWithCustomers.filter(e => e.status === 'pending').length;
 
       setStats({
         totalCars: carsData?.length || 0,
@@ -342,7 +366,7 @@ export const AdminDashboard = () => {
                     <div key={booking.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h3 className="font-semibold text-gray-900">{booking.profiles?.full_name}</h3>
+                          <h3 className="font-semibold text-gray-900">{booking.customer_name}</h3>
                           <p className="text-sm text-gray-600">{booking.cars?.name}</p>
                           <p className="text-sm font-medium text-green-600">
                             ₹{booking.amount_paid.toLocaleString()}
@@ -374,7 +398,7 @@ export const AdminDashboard = () => {
                   {enquiries.slice(0, 5).map((enquiry) => (
                     <div key={enquiry.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start mb-2">
-                        <h3 className="font-semibold text-gray-900">{enquiry.profiles?.full_name}</h3>
+                        <h3 className="font-semibold text-gray-900">{enquiry.customer_name}</h3>
                         <Badge className={enquiry.status === 'replied' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                           {enquiry.status.toUpperCase()}
                         </Badge>
