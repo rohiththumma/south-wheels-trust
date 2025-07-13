@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Car, Phone, User, Search, Home } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,6 +11,8 @@ import {
 } from "@/components/ui/navigation-menu";
 
 export const Navigation = () => {
+  const navigate = useNavigate();
+
   const handleLogoClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -33,8 +36,7 @@ export const Navigation = () => {
   };
 
   const handleLoginClick = () => {
-    // Placeholder for login functionality
-    alert('Login functionality will be implemented soon!');
+    navigate('/auth');
   };
 
   return (
