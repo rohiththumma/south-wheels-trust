@@ -26,14 +26,28 @@ export const AdminAuth = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.email.trim() || !formData.password.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const { error } = await signIn(formData.email, formData.password);
+      console.log('Admin login attempt for:', formData.email);
+      
+      const { error } = await signIn(formData.email.trim(), formData.password);
+      
       if (error) {
+        console.error('Admin login error:', error);
         toast({
           title: "Login Failed",
-          description: error.message,
+          description: error.message || "Invalid admin credentials. Please try again.",
           variant: "destructive",
         });
       } else {
@@ -41,12 +55,14 @@ export const AdminAuth = () => {
           title: "Welcome Admin!",
           description: "You have been successfully logged in.",
         });
-        navigate('/admin');
+        // Navigation will be handled automatically by the Dashboard component based on user role
+        navigate('/dashboard');
       }
     } catch (error) {
+      console.error('Admin auth error:', error);
       toast({
         title: "Error",
-        description: "An unexpected error occurred.",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {

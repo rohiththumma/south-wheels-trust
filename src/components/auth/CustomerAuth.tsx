@@ -33,15 +33,29 @@ export const CustomerAuth = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.email.trim() || !formData.password.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
       if (isLogin) {
-        const { error } = await signIn(formData.email, formData.password);
+        console.log('Customer login attempt for:', formData.email);
+        
+        const { error } = await signIn(formData.email.trim(), formData.password);
+        
         if (error) {
+          console.error('Login error:', error);
           toast({
             title: "Login Failed",
-            description: error.message,
+            description: error.message || "Invalid email or password. Please try again.",
             variant: "destructive",
           });
         } else {
@@ -49,6 +63,7 @@ export const CustomerAuth = () => {
             title: "Welcome back!",
             description: "You have been successfully logged in.",
           });
+          // Navigation will be handled automatically by the Dashboard component based on user role
           navigate('/dashboard');
         }
       } else {
@@ -61,11 +76,21 @@ export const CustomerAuth = () => {
           return;
         }
 
-        const { error } = await signUp(formData.email, formData.password, formData.fullName, formData.mobile);
+        if (!formData.agreeTerms) {
+          toast({
+            title: "Terms Required",
+            description: "Please agree to the terms and conditions.",
+            variant: "destructive",
+          });
+          return;
+        }
+
+        const { error } = await signUp(formData.email.trim(), formData.password, formData.fullName, formData.mobile);
+        
         if (error) {
           toast({
             title: "Registration Failed",
-            description: error.message,
+            description: error.message || "Unable to create account. Please try again.",
             variant: "destructive",
           });
         } else {
@@ -77,9 +102,10 @@ export const CustomerAuth = () => {
         }
       }
     } catch (error) {
+      console.error('Auth error:', error);
       toast({
         title: "Error",
-        description: "An unexpected error occurred.",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -136,18 +162,16 @@ export const CustomerAuth = () => {
         )}
 
         <div>
-          <Label htmlFor="email" className="text-gray-700 font-medium">
-            {isLogin ? 'Email or Mobile Number' : 'Email Address'}
-          </Label>
+          <Label htmlFor="email" className="text-gray-700 font-medium">Email Address</Label>
           <div className="relative mt-1">
             <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
             <Input
               id="email"
-              type={isLogin ? "text" : "email"}
+              type="email"
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
               className="pl-10 border-gray-300 focus:border-red-500 focus:ring-red-500"
-              placeholder={isLogin ? "Enter email or mobile number" : "Enter your email address"}
+              placeholder="Enter your email address"
               required
             />
           </div>
