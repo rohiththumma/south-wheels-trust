@@ -107,13 +107,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signUp = async (email: string, password: string, fullName: string, mobile: string) => {
     try {
-      const redirectUrl = `${window.location.origin}/dashboard`;
-      
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: redirectUrl,
           data: {
             full_name: fullName,
             mobile: mobile,
@@ -122,7 +119,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       });
       
-      return { error };
+      if (error) throw error;
+      
+      // If user is immediately confirmed (email confirmation disabled), create profile
+      if (data.user && !data.user.email_confirmed_at) {
+        await supabase.from('profiles').insert({
+          id: data.user.id,
+          full_name: fullName,
+          mobile: mobile,
+          role: 'customer'
+        });
+      }
+      
+      return { error: null };
     } catch (error) {
       console.error('Sign up error:', error);
       return { error };
@@ -140,10 +149,33 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       
       if (error) {
         console.error('Sign in error:', error);
+        // Better error messages for common issues
+        if (error.message.includes('Email not confirmed')) {
+          return { error: { ...error, message: 'Please check your email and confirm your account before signing in.' } };
+        }
         return { error };
       }
 
       console.log('Sign in successful:', data.user?.email);
+      
+      // Check if profile exists, create if missing
+      if (data.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', data.user.id)
+          .single();
+          
+        if (!profile) {
+          await supabase.from('profiles').insert({
+            id: data.user.id,
+            full_name: data.user.user_metadata?.full_name || null,
+            mobile: data.user.user_metadata?.mobile || null,
+            role: 'customer'
+          });
+        }
+      }
+      
       return { error: null };
     } catch (error) {
       console.error('Sign in exception:', error);
