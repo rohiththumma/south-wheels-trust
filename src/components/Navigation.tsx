@@ -35,8 +35,8 @@ export const Navigation = () => {
     }
   };
 
-  const handleLoginClick = () => {
-    navigate('/auth');
+  const handleContactClick = () => {
+    window.open('tel:+919876543210', '_self');
   };
 
   return (
@@ -97,10 +97,10 @@ export const Navigation = () => {
             <Button 
               size="sm" 
               className="bg-red-600 hover:bg-red-700"
-              onClick={handleLoginClick}
+              onClick={handleContactClick}
             >
-              <User className="mr-2 h-4 w-4" />
-              Login / Register
+              <Phone className="mr-2 h-4 w-4" />
+              Contact Us
             </Button>
           </div>
         </div>
