@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Car, Phone, User, Search, Home } from "lucide-react";
+import { Car, User, Search, Home, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
@@ -35,8 +35,8 @@ export const Navigation = () => {
     }
   };
 
-  const handleContactClick = () => {
-    window.open('tel:+919876543210', '_self');
+  const handleLoginClick = () => {
+    navigate('/auth');
   };
 
   return (
@@ -96,11 +96,20 @@ export const Navigation = () => {
           <div className="flex items-center space-x-3">
             <Button 
               size="sm" 
-              className="bg-red-600 hover:bg-red-700"
-              onClick={handleContactClick}
+              variant="outline"
+              className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+              onClick={handleLoginClick}
             >
-              <Phone className="mr-2 h-4 w-4" />
-              Contact Us
+              <User className="mr-2 h-4 w-4" />
+              Login
+            </Button>
+            <Button 
+              size="sm" 
+              className="bg-red-600 hover:bg-red-700"
+              onClick={handleLoginClick}
+            >
+              <UserPlus className="mr-2 h-4 w-4" />
+              Register
             </Button>
           </div>
         </div>
