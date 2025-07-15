@@ -207,7 +207,7 @@ const CustomerDashboard = () => {
                 <Button 
                   variant="outline" 
                   className="w-full"
-                  onClick={() => handleAction("Edit Profile")}
+                  onClick={() => navigate('/customer/my-profile')}
                 >
                   Edit Profile
                 </Button>
@@ -230,7 +230,7 @@ const CustomerDashboard = () => {
                 <Button 
                   variant="outline" 
                   className="w-full"
-                  onClick={() => handleAction("View Bookings")}
+                  onClick={() => navigate('/customer/my-bookings')}
                 >
                   <Calendar className="mr-2 h-4 w-4" />
                   My Bookings

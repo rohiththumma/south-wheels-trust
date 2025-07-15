@@ -102,7 +102,7 @@ const AdminDashboard = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Button 
                 className="h-16 bg-red-600 hover:bg-red-700"
-                onClick={() => handleAction("Add New Car")}
+                onClick={() => navigate('/admin/manage-cars')}
               >
                 <Plus className="mr-2 h-5 w-5" />
                 Add Car
@@ -110,7 +110,7 @@ const AdminDashboard = () => {
               <Button 
                 variant="outline" 
                 className="h-16"
-                onClick={() => handleAction("Manage Customers")}
+                onClick={() => navigate('/admin/manage-customers')}
               >
                 <Users className="mr-2 h-5 w-5" />
                 Customers
@@ -118,7 +118,7 @@ const AdminDashboard = () => {
               <Button 
                 variant="outline" 
                 className="h-16"
-                onClick={() => handleAction("View Bookings")}
+                onClick={() => navigate('/admin/manage-bookings')}
               >
                 <FileText className="mr-2 h-5 w-5" />
                 Bookings
